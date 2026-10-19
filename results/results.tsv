@@ -5,3 +5,5 @@ DeepSeek-V4.1-Flash-1017	on	minimal	Effort: 25	14	322	1880	51607	112533	2558254	
 DeepSeek-V4.1-Flash-1017	on	low	Effort: 50	16	327	3555	105728	218885	6184352	465	0
 DeepSeek-V4.1-Flash-1017	on	medium	Effort: 62	15	326	7103	252541	421875	17130612	827	2
 DeepSeek-V4.1-Flash-1017	on	high	Effort: 75	16	327	9795	389150	607059	21958013	934	1
+GLM-5.3-Flash	off	none	<think></think> (no effort line)	10	251	4161	0	226729	33496981	1299	6
+DeepSeek-V4.1-Flash-1017	off	none	</think> (no effort line)	13	314	2030	0	121969	6320249	468	0

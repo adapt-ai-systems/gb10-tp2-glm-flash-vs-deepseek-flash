@@ -21,9 +21,17 @@ turns. Thinking tokens come from the server's `usage.completion_tokens_details.r
 | DeepSeek V4.1 Flash 1017 | low (`Effort: 50`) | 16 | 327 | 3,555 s (59 min) | 105,728 | 218,885 | 6,184,352 |
 | DeepSeek V4.1 Flash 1017 | medium (`Effort: 62`) | 15 | 326 | 7,103 s (1 h 58 min) | 252,541 | 421,875 | 17,130,612 |
 | DeepSeek V4.1 Flash 1017 | high (`Effort: 75`) | 16 | 327 | 9,795 s (2 h 43 min) | 389,150 | 607,059 | 21,958,013 |
+| GLM 5.3 Flash | none (thinking off: `<think></think>`) | 10 | 251 | 4,161 s (1 h 9 min) | 0 | 226,729 | 33,496,981 |
+| DeepSeek V4.1 Flash 1017 | none (thinking off: `</think>`) | 13 | 314 | 2,030 s (34 min) | 0 | 121,969 | 6,320,249 |
 
 The card calls the GLM high row "GLM med": GLM 5.3 Flash's chat template knows only `low`, `high` and `max`, and the
-GLM recipe sends `medium` as `high`. Thinking-off rows for both models will be added here when they are done.
+GLM recipe sends `medium` as `high`. The card shows the first four rows only.
+
+**Thinking off.** With `reasoning_effort: "none"` both models wrote 0 reasoning tokens over the whole battery.
+GLM 5.3 Flash then hit the 120-turn cap on 6 tasks; on 3 of them it only read files and never wrote one (its
+last 30 tool calls were one repeated command on 2 of those), so those 3 tasks have no diff and score 0. Both
+thinking-off runs made the same number of malformed tool calls (123 each, a wrong argument name), so that is not
+the difference.
 The same numbers are in [`results/results.tsv`](results/results.tsv).
 
 **Read with care.** One run per row, so a 1-point difference is within run-to-run noise. The two stacks differ in
@@ -43,7 +51,8 @@ serving settings.
 - Caps per task: 120 turns, 3,600 s wall, `max_tokens` 32,768 per reply. The only per-model request setting is
   `reasoning_effort`; everything else is the server's default.
 - After the run, each task's final diff is applied to a fresh copy of the repository and the smoke test runs again
-  (all six runs: every diff applied and every smoke passed). Then a hidden test suite grades each task. The hidden
+  (all six thinking-on runs and the DeepSeek thinking-off run: every diff applied and every smoke passed; the GLM
+  thinking-off run had 3 empty diffs and 2 failed smokes, all graded as is). Then a hidden test suite grades each task. The hidden
   tests are not published, so that the battery stays useful.
 
 ## How we launched GLM 5.3 Flash
@@ -117,7 +126,7 @@ request, then prints the rendered prompt and the reasoning-token count. What we 
 | `low` | `Reasoning Effort: Low` | `Effort: 50` |
 | `medium` | `Reasoning Effort: High` (the recipe maps medium to high) | `Effort: 62` |
 | `high` | `Reasoning Effort: High` | `Effort: 75` |
-| `none` | - | no effort line; prompt ends with `</think>`; 0 reasoning tokens |
+| `none` | no effort line; prompt ends with `<think></think>`; 0 reasoning tokens | no effort line; prompt ends with `</think>`; 0 reasoning tokens |
 
 ## Credits and licences
 
