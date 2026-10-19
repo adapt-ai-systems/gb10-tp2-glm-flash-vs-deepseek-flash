@@ -1,0 +1,7 @@
+model	thinking	effort_sent	effort_rendered	tasks_pass_of_18	points_of_329	wall_s	thinking_tokens	output_tokens	total_tokens	turns	turn_caps
+GLM-5.3-Flash	on	low	Reasoning Effort: Low	15	321	668	5225	33603	846532	167	0
+GLM-5.3-Flash	on	high (our "medium" row; GLM's template has no medium)	Reasoning Effort: High	15	322	1902	35922	104723	2594907	272	0
+DeepSeek-V4.1-Flash-1017	on	minimal	Effort: 25	14	322	1880	51607	112533	2558254	293	0
+DeepSeek-V4.1-Flash-1017	on	low	Effort: 50	16	327	3555	105728	218885	6184352	465	0
+DeepSeek-V4.1-Flash-1017	on	medium	Effort: 62	15	326	7103	252541	421875	17130612	827	2
+DeepSeek-V4.1-Flash-1017	on	high	Effort: 75	16	327	9795	389150	607059	21958013	934	1
