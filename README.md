@@ -142,3 +142,5 @@ request, then prints the rendered prompt and the reasoning-token count. What we 
 
 Each recipe's own `CREDITS.md` and `NOTICE` list more contributors. The model weights, images and templates keep
 their own licences and are not in this repository.
+
+Our own files here (README, results, `scripts/check_effort.py`) are MIT, see [LICENSE](LICENSE).
